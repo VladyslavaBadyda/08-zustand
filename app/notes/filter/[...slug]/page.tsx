@@ -6,6 +6,7 @@ import {
   HydrationBoundary,
   QueryClient,
 } from "@tanstack/react-query";
+import { useRouter } from 'next/router';
 
 interface Props {
   params: Promise<{ slug: string[] }>;
@@ -33,6 +34,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const rawTag = slug?.[0];
   const tag = rawTag === "all" ? undefined : rawTag;
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
 
   return {
     title: `Notes filtered by:  ${tag}`,
@@ -40,7 +42,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       title: `Notes filtered by:  ${tag}`,
       description: `Browse notes filtered by "${tag}" tag. Find relevant notes quickly.`,
-      url: "http://localhost:3000",
+      url: `${baseUrl}/notes/filter/${tag}`,
       images: [
         {
           url: "/notehub-og-meta.jpg",
