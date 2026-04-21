@@ -1,2 +1,8 @@
-// This file is for the error page in notes
-// ...add your error.tsx code here...
+"use client";
+
+interface ErrorProps {
+  error: Error;
+}
+export default function Error({ error }: ErrorProps) {
+  return <p>Could not fetch the list of notes. {error.message}</p>;
+}
