@@ -6,7 +6,7 @@ import {
   HydrationBoundary,
   QueryClient,
 } from "@tanstack/react-query";
-import { useRouter } from 'next/router';
+import { usePathname } from 'next/navigation';
 
 interface Props {
   params: Promise<{ slug: string[] }>;
